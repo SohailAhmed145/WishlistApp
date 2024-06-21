@@ -35,9 +35,7 @@ fun HomeView(
 ) {
     val context = LocalContext.current
     Scaffold(
-        topBar = { AppBarView(title = " WishList ") {
-            Toast.makeText(context, "Button clicked", Toast.LENGTH_LONG).show()
-        }
+        topBar = { AppBarView(title = " WishList ")
         },
         floatingActionButton = {
             FloatingActionButton(
@@ -45,7 +43,6 @@ fun HomeView(
                     .padding(20.dp),
                 containerColor = MaterialTheme.colorScheme.secondaryContainer,
                 onClick = {
-                    Toast.makeText(context, "FAB clicked", Toast.LENGTH_LONG).show()
                     navController.navigate(Screen.AddScreen.route)
                 }
             ) {

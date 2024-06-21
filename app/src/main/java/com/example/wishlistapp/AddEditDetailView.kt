@@ -29,26 +29,29 @@ import androidx.navigation.NavController
 
 @Composable
 fun AddEditDetailView(
-    id : Long,
+    id: Long,
     viewModel: WishViewModel,
     navController: NavController
-){
+) {
     Scaffold(
         topBar = {
-             AppBarView(title =
-            if(id != 0L) stringResource(id = R.string.update_wish)
-            else stringResource(id = R.string.add_wish)
-            )
-        }
+            AppBarView(
+                title =
+                if (id != 0L) stringResource(id = R.string.update_wish)
+                else stringResource(id = R.string.add_wish)
+            ) {
+                navController.navigateUp()
+            }
+        },
     ) {
-        Column (
+        Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
                 .wrapContentSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
-        ){
+        ) {
             Spacer(modifier = Modifier.height(10.dp))
 
             WishTextField(label = "title",
@@ -64,21 +67,22 @@ fun AddEditDetailView(
                 onValueChanged = {
                     viewModel.onWishDescriptionChanged(it)
                 })
-            
+
             Spacer(modifier = Modifier.height(10.dp))
-            
+
             Button(onClick = {
                 if (viewModel.wishTitleState.isNotEmpty() &&
-                        viewModel.wishDescriptionState.isNotEmpty()){
+                    viewModel.wishDescriptionState.isNotEmpty()
+                ) {
                     //TODO updatewish
                 } else {
                     //TODO
                 }
-                }
+            }
             ) {
                 Text(
                     text = if (id != 0L) stringResource(id = R.string.update_wish)
-                else stringResource(id = R.string.add_wish),
+                    else stringResource(id = R.string.add_wish),
                     style = TextStyle(
                         fontSize = 18.sp
                     )
@@ -93,13 +97,13 @@ fun WishTextField(
     label: String,
     value: String,
     onValueChanged: (String) -> Unit
-){
+) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChanged,
         label = { Text(text = label, color = Color.Black) },
         modifier = Modifier.fillMaxWidth(),
-        keyboardOptions =  KeyboardOptions(
+        keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Text
         ),
         colors = TextFieldDefaults.colors(
