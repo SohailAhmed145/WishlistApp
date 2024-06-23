@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                 ) {
-                    Navigation()
+//                    Navigation()
                 }
             }
         }
